@@ -11,6 +11,7 @@ const loginError = document.getElementById("loginError");
 
 const waBadge = document.getElementById("waBadge");
 const waConnectBtn = document.getElementById("waConnectBtn");
+const waErrorDetail = document.getElementById("waErrorDetail");
 const waQrBox = document.getElementById("waQrBox");
 const waQrImg = document.getElementById("waQrImg");
 
@@ -153,6 +154,14 @@ function renderWhatsappStatus(status) {
       waBadge.textContent = "Not connected";
       waConnectBtn.hidden = false;
   }
+
+  if (status.error) {
+    waErrorDetail.textContent = `Error: ${status.error}`;
+    waErrorDetail.hidden = false;
+  } else {
+    waErrorDetail.hidden = true;
+  }
+
   updateSendState();
 }
 
