@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whatsapp Automation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.06-1.35C8.5 21.5 10.2 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18.2c-1.6 0-3.1-.44-4.38-1.2l-.31-.19-3 .8.8-2.93-.2-.3A8.17 8.17 0 0 1 3.8 12 8.2 8.2 0 1 1 12 20.2Z" fill="currentColor"/>
+            <path d="M16.7 13.86c-.26-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.26-.65.82-.8.99-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.51-1.43-1.77-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.46.13-.15.17-.26.26-.43.08-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.45.06-.68.32-.23.26-.89.87-.89 2.13s.91 2.47 1.04 2.64c.13.17 1.79 2.73 4.34 3.83.61.26 1.08.42 1.45.53.61.19 1.16.17 1.6.1.49-.07 1.5-.61 1.71-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.49-.3Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <div>
+          <h1>Whatsapp Automation</h1>
+          <p>Send one message to many contacts in a few clicks</p>
+        </div>
+      </div>
+      <div class="user-bar" id="userBar" hidden>
+        <span class="user-name" id="userGreeting"></span>
+        <button id="logoutBtn" class="btn secondary small">Log out</button>
+      </div>
+    </header>
+
+    <!-- Login -->
+    <section class="step-card auth-card" id="loginView" hidden>
+      <h2>Log in</h2>
+      <p class="step-desc">Use the email or mobile number your admin registered for you.</p>
+      <form id="loginForm">
+        <label for="loginIdentifier">Email or mobile number</label>
+        <input id="loginIdentifier" type="text" autocomplete="username" required />
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required />
+        <button type="submit" class="btn primary full">Log in</button>
+        <p class="hint error" id="loginError" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- Dashboard -->
+    <main id="dashboardView" class="dashboard-grid" hidden>
+      <div class="col-left">
+        <!-- Step 1: Connect -->
+        <section class="step-card">
+          <div class="step-head">
+            <span class="step-num">1</span>
+            <div>
+              <h2>Connect your accounts</h2>
+              <p class="step-desc">WhatsApp is required to send messages. Google is optional — connect it if you want to pick recipients from your contacts.</p>
+            </div>
+          </div>
+
+          <div class="connect-grid">
+            <div class="connect-tile" id="waCard">
+              <div class="connect-tile-head">
+                <span class="service-icon wa-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.06-1.35C8.5 21.5 10.2 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z" fill="currentColor"/>
+                    <path d="M16.7 13.86c-.26-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.26-.65.82-.8.99-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.51-1.43-1.77-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.46.13-.15.17-.26.26-.43.08-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.45.06-.68.32-.23.26-.89.87-.89 2.13s.91 2.47 1.04 2.64c.13.17 1.79 2.73 4.34 3.83.61.26 1.08.42 1.45.53.61.19 1.16.17 1.6.1.49-.07 1.5-.61 1.71-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.49-.3Z" fill="#fff"/>
+                  </svg>
+                </span>
+                <div class="service-info">
+                  <strong>WhatsApp</strong>
+                  <span class="badge" id="waBadge" aria-live="polite">Checking…</span>
+                </div>
+              </div>
+              <p class="tile-desc">Messages are sent from your own WhatsApp account, linked like WhatsApp Web.</p>
+              <button id="waConnectBtn" class="btn primary full" hidden>Connect WhatsApp</button>
+              <div id="waQrBox" class="qr-box" hidden>
+                <img id="waQrImg" alt="WhatsApp QR code — scan with your phone to link this device" />
+                <p>Open WhatsApp → Settings → Linked Devices → Link a Device, then scan this code</p>
+              </div>
+            </div>
+
+            <div class="connect-tile" id="googleCard">
+              <div class="connect-tile-head">
+                <span class="service-icon google-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1Z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.25 1.06-3.71 1.06-2.86 0-5.29-1.93-6.15-4.53H2.18v2.85A11 11 0 0 0 12 23Z" fill="#34A853"/>
+                    <path d="M5.85 14.1a6.6 6.6 0 0 1 0-4.2V7.05H2.18a11 11 0 0 0 0 9.9l3.67-2.85Z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.82 6.05l3.67 2.85C6.71 7.3 9.14 5.38 12 5.38Z" fill="#EA4335"/>
+                  </svg>
+                </span>
+                <div class="service-info">
+                  <strong>Google Contacts</strong>
+                  <span class="badge" id="googleBadge" aria-live="polite">Checking…</span>
+                </div>
+              </div>
+              <p class="tile-desc">Optional — connect to pick recipients straight from your Google contacts.</p>
+              <a id="googleConnectBtn" class="btn secondary full" href="/api/google/connect" hidden>Connect Google</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="col-right">
+        <!-- Step 2: Recipients -->
+        <section class="step-card">
+          <div class="step-head">
+            <span class="step-num">2</span>
+            <div>
+              <h2>Choose recipients</h2>
+              <p class="step-desc">Pick a saved group, pick contacts from Google, type numbers manually, or combine all three.</p>
+            </div>
+          </div>
+
+          <div class="groups-box">
+            <div class="contacts-toolbar">
+              <span class="contacts-meta" id="groupsSummary">No saved groups yet</span>
+              <button id="createGroupBtn" class="btn secondary small" disabled>+ Create Group</button>
+            </div>
+            <div id="groupsList" class="contacts-list groups-list" hidden></div>
+          </div>
+
+          <div class="google-contacts" id="googleContactsBox" hidden>
+            <div class="contacts-toolbar">
+              <span class="contacts-meta" id="contactsSummary">Loading contacts…</span>
+              <button id="refreshContactsBtn" class="btn secondary small">Refresh Contacts</button>
+            </div>
+            <input id="contactSearch" class="search-input" type="text" placeholder="Search by name or number…" hidden aria-label="Search Google contacts" />
+            <div id="contactsList" class="contacts-list" hidden></div>
+          </div>
+
+          <div class="manual-entry">
+            <label for="manualNumbers">Manual numbers</label>
+            <textarea id="manualNumbers" rows="3" placeholder="e.g. 919876543210, 919000011111"></textarea>
+            <p class="field-hint">Include the country code, no “+” or spaces. Separate numbers with commas.</p>
+          </div>
+
+          <p class="recipient-summary" id="recipientCount" aria-live="polite"><strong>0</strong> recipient(s) selected</p>
+        </section>
+
+        <!-- Step 3: Message -->
+        <section class="step-card">
+          <div class="step-head">
+            <span class="step-num">3</span>
+            <div>
+              <h2>Write your message</h2>
+              <p class="step-desc">This exact text is sent to everyone selected above.</p>
+            </div>
+          </div>
+          <label for="messageBox" class="sr-only">Message text</label>
+          <textarea id="messageBox" class="message-box" rows="7" placeholder="Type your message here…"></textarea>
+        </section>
+
+        <!-- Step 4: Send -->
+        <section class="step-card send-card">
+          <button id="sendBtn" class="btn primary large" disabled>Send Messages</button>
+          <p class="hint" id="sendHint" aria-live="polite"></p>
+        </section>
+
+        <section class="step-card" id="logPanel" hidden>
+          <h2>Sending progress</h2>
+          <div class="log-summary" id="logSummary" aria-live="polite"></div>
+          <div id="logList" class="log-list" aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="foot-note">
+      Messages are sent through your own linked WhatsApp account. Please use responsibly.
+      <div class="legal-links">
+        <a href="/home">About</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Create / edit group popup -->
+  <div class="modal-overlay" id="groupModalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="groupModalTitle">
+      <div class="modal-head">
+        <h3 id="groupModalTitle">Create group</h3>
+        <button type="button" class="modal-close" id="groupModalClose" aria-label="Close dialog">✕</button>
+      </div>
+      <form id="groupForm">
+        <label for="groupNameInput">Group name</label>
+        <input id="groupNameInput" type="text" maxlength="60" required />
+
+        <label id="groupNumbersLabel">Numbers in this group</label>
+        <div id="groupNumbersList" class="group-numbers-list" aria-labelledby="groupNumbersLabel"></div>
+
+        <div class="add-number-row">
+          <label for="addNumberInput" class="sr-only">Add a number</label>
+          <input id="addNumberInput" type="text" placeholder="Add a number, e.g. 919876543210" />
+          <button type="button" id="addNumberBtn" class="btn secondary small">Add</button>
+        </div>
+
+        <p class="hint error" id="groupModalError" role="alert"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="groupModalCancel">Cancel</button>
+          <button type="submit" class="btn primary" id="groupModalSave">Save group</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

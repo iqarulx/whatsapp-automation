@@ -1,0 +1,7 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+client_secret_*.json
+.env
+data.db
+data.db-*

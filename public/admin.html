@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Whatsapp Automation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark admin-mark">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2 4 5v6c0 5 3.4 8.9 8 10 4.6-1.1 8-5 8-10V5l-8-3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 12.2l2 2 4-4.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <h1>Admin panel</h1>
+          <p>Create and manage user accounts</p>
+        </div>
+      </div>
+      <div class="user-bar" id="adminBar" hidden>
+        <button id="adminLogoutBtn" class="btn secondary small">Log out</button>
+      </div>
+    </header>
+
+    <!-- Admin login -->
+    <section class="step-card auth-card" id="adminLoginView" hidden>
+      <h2>Admin login</h2>
+      <p class="step-desc">Sign in to manage user accounts.</p>
+      <form id="adminLoginForm">
+        <label for="adminUsername">Username</label>
+        <input id="adminUsername" type="text" autocomplete="username" required />
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" type="password" autocomplete="current-password" required />
+        <button type="submit" class="btn primary full">Log in</button>
+        <p class="hint error" id="adminLoginError"></p>
+      </form>
+    </section>
+
+    <!-- Admin dashboard -->
+    <main id="adminDashboard" hidden>
+      <section class="step-card">
+        <div class="step-head">
+          <div>
+            <h2>Add a user</h2>
+            <p class="step-desc">They'll log in on the main page with their email or mobile number and this password.</p>
+          </div>
+        </div>
+        <form id="createUserForm" class="user-form">
+          <div class="form-grid">
+            <div>
+              <label for="uName">Name</label>
+              <input id="uName" type="text" required />
+            </div>
+            <div>
+              <label for="uEmail">Email</label>
+              <input id="uEmail" type="email" required />
+            </div>
+            <div>
+              <label for="uMobile">Mobile number</label>
+              <input id="uMobile" type="text" placeholder="919876543210" required />
+            </div>
+            <div>
+              <label for="uCompany">Company name</label>
+              <input id="uCompany" type="text" />
+            </div>
+            <div>
+              <label for="uPassword">Password</label>
+              <input id="uPassword" type="password" minlength="6" required />
+            </div>
+          </div>
+          <button type="submit" class="btn primary">Create user</button>
+          <p class="hint error" id="createUserMsg"></p>
+        </form>
+      </section>
+
+      <section class="step-card">
+        <h2>Users</h2>
+        <div id="usersTableWrap"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

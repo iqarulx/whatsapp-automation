@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy · Whatsapp Automation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app doc-page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.06-1.35C8.5 21.5 10.2 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18.2c-1.6 0-3.1-.44-4.38-1.2l-.31-.19-3 .8.8-2.93-.2-.3A8.17 8.17 0 0 1 3.8 12 8.2 8.2 0 1 1 12 20.2Z" fill="currentColor"/>
+            <path d="M16.7 13.86c-.26-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.57.13-.17.26-.65.82-.8.99-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.51-1.43-1.77-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.46.13-.15.17-.26.26-.43.08-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.49-.41-.42-.57-.43h-.48c-.17 0-.45.06-.68.32-.23.26-.89.87-.89 2.13s.91 2.47 1.04 2.64c.13.17 1.79 2.73 4.34 3.83.61.26 1.08.42 1.45.53.61.19 1.16.17 1.6.1.49-.07 1.5-.61 1.71-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.49-.3Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <div>
+          <p style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin:0;">Whatsapp Automation</p>
+          <p style="margin:2px 0 0;font-size:0.9rem;color:var(--text-muted);">Send one message to many contacts in a few clicks</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="doc-nav">
+      <a href="https://whatsapp.dtsbilling.in/">← Back to login</a>
+      <div class="doc-links">
+        <a href="home.html">About</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+
+    <section class="step-card">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Plain-language summary of what this app collects and why.</p>
+
+      <h2>Who provisions your account</h2>
+      <p>
+        This tool doesn't have public sign-up. An administrator creates your account and
+        gives you the login details. That administrator operates this specific deployment and
+        controls the database it stores data in.
+      </p>
+
+      <h2>What's collected</h2>
+      <ul>
+        <li><strong>Account details</strong> — name, email, mobile number, and company name, entered by your administrator when your account is created.</li>
+        <li><strong>Password</strong> — stored as a one-way bcrypt hash. Your actual password is never saved in readable form and isn't visible to the administrator.</li>
+        <li><strong>WhatsApp connection</strong> — once you link WhatsApp, your linked phone number is saved to your account, and your WhatsApp Web session data is kept locally on the server so you don't have to re-scan the QR code every time.</li>
+        <li><strong>Google account connection (optional)</strong> — if you connect Google Contacts, an OAuth access/refresh token is stored so the app can read your contacts on your behalf. This app only ever requests read-only access to your contacts — nothing else in your Google account.</li>
+        <li><strong>Cached Google contacts</strong> — contact names and phone numbers are saved so the app doesn't have to re-fetch your whole contact list from Google every time you open the dashboard. You control when this cache is refreshed.</li>
+        <li><strong>Saved groups</strong> — any group name and number list you choose to save.</li>
+        <li><strong>Message content</strong> — the text and recipient list you send is used only to deliver that message through your linked WhatsApp session; it is not written to the database or kept after the send finishes.</li>
+      </ul>
+
+      <h2>Where it's stored</h2>
+      <p>
+        Everything above lives in a local database on the server this app is running on — it
+        is not sent to any analytics service or third party beyond what's required to perform
+        the action you asked for (sending via WhatsApp, or reading contacts via Google, both
+        described below). This is self-hosted software: the operator running it controls where
+        that server and database actually live.
+      </p>
+
+      <h2>Who can see it</h2>
+      <p>
+        The administrator of this deployment can view and manage account records (including
+        deleting an account and everything tied to it) through the admin panel. Other users of
+        the app cannot see your data — each account's WhatsApp connection, Google connection,
+        contacts, and groups are kept separate from every other account.
+      </p>
+
+      <h2>Third parties involved</h2>
+      <ul>
+        <li><strong>WhatsApp / Meta</strong> — messages are sent through your own linked WhatsApp account using WhatsApp Web's normal mechanism. Meta's own privacy policy and terms govern the message delivery itself.</li>
+        <li><strong>Google</strong> — if you connect Google Contacts, reading your contacts is governed by Google's own privacy policy and the permissions you grant during sign-in. You can revoke this access at any time from your Google Account's security settings.</li>
+      </ul>
+
+      <h2>Data deletion</h2>
+      <p>
+        Deleting your account (done by an administrator) permanently removes your profile,
+        cached contacts, Google connection, and saved groups from the database, and disconnects
+        your linked WhatsApp session.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>This page may be updated as the app changes. Check back periodically if you want to stay current.</p>
+    </section>
+
+    <footer class="foot-note">
+      <div class="legal-links">
+        <a href="https://whatsapp.dtsbilling.in/">Log in</a>
+        <a href="home.html">About</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
